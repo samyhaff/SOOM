@@ -1,4 +1,4 @@
 FROM python:latest
 
-ENTRYPOINT ["hello world"]
+ENTRYPOINT ["python", "print('test')"]
 
