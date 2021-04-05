@@ -1,6 +1,6 @@
 CC=g++
 
-FLAGS=-lSDL2 -lSDL2_image -lSDL2_ttf
+FLAGS=-lSDL2 -lSDL2_image
 
 all: SOOM.out
 	./SOOM.out

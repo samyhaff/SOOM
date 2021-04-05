@@ -11,6 +11,10 @@ void init(game *game)
     game->player.y = SCREEN_HEIGHT / 2;
 
     loadMap("map", game);
+
+    game->board.xStep = SCREEN_WIDTH / game->board.w; // A AMELIORER
+    game->board.yStep = SCREEN_HEIGHT / game->board.h;
+    game->player.size = game->board.xStep / 5; 
     
     game->done = FALSE;
 }
