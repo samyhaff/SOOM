@@ -1,12 +1,12 @@
 #include "loadMap.h"
 #include <fstream>
+#include <iostream>
 
 using namespace std;
 
 void loadMap(string nameOfFile, game *game)
 {
     fstream file;
-    int var;
     file.open(nameOfFile, ios::in);
 
     file >> game->board.w;
