@@ -9,6 +9,7 @@ void init(game *game)
     game->renderer = SDL_CreateRenderer(game->window, -1, SDL_RENDERER_ACCELERATED);
     game->player.x = SCREEN_WIDTH / 2;
     game->player.y = SCREEN_HEIGHT / 2;
+   game->player.velocity = 10;
 
     loadMap("map", game);
 

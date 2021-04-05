@@ -15,8 +15,6 @@
 #define EMPTY 0
 #define WALL  1
 
-#define N 100
-
 typedef int board_array[BOARD_MAX_WIDTH][BOARD_MAX_HEIGHT];
 
 typedef struct {
@@ -25,7 +23,7 @@ typedef struct {
 } t_board;
 
 typedef struct {
-    int x, y;
+    int x, y, velocity;
     int size;
 } t_player;
 

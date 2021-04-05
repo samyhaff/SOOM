@@ -1,4 +1,5 @@
 #include "game.h"
+#include "logic.h"
 
 void input(game *game) 
 {
@@ -15,6 +16,30 @@ void input(game *game)
                 {
                     case SDLK_ESCAPE:
                         game->done = TRUE;
+                    break;
+                    case SDLK_UP:
+                    {
+                        if (canMove(game, game->player.x, game->player.y -1))
+                            game->player.y -= game->player.velocity;
+                    }
+                    break;
+                    case SDLK_DOWN:
+                    {
+                        if (canMove(game, game->player.x, game->player.y + 1)) 
+                            game->player.y += game->player.velocity;
+                    }
+                    break;
+                    case SDLK_RIGHT:
+                    {
+                        if (canMove(game, game->player.x + 1, game->player.y)) 
+                            game->player.x += game->player.velocity;
+                    }
+                    break;
+                    case SDLK_LEFT:
+                    {
+                        if (canMove(game, game->player.x - 1, game->player.y)) 
+                            game->player.x -= game->player.velocity;
+                    }
                     break;
                 }
             }

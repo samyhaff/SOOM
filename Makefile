@@ -8,8 +8,8 @@ all: SOOM.out
 clean:
 	rm -f *.o SOOM.out
 
-SOOM.out: main.o draw.o input.o init.o quit.o loadMap.o
-	$(CC) $(FLAGS) -o SOOM.out main.o draw.o init.o input.o quit.o loadMap.o
+SOOM.out: main.o draw.o input.o init.o quit.o loadMap.o logic.o
+	$(CC) $(FLAGS) -o SOOM.out main.o draw.o init.o input.o quit.o loadMap.o logic.o
 
 draw.o: draw.cpp game.h
 	$(CC) $(FLAGS) -c draw.cpp
@@ -25,3 +25,6 @@ loadMap.o: loadMap.cpp game.h
 
 quit.o: quit.cpp game.h
 	$(CC) $(FLAGS) -c quit.cpp
+
+logic.o: logic.cpp game.h
+	$(CC) $(FLAGS) -c logic.cpp
