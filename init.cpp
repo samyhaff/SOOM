@@ -1,5 +1,6 @@
 #include "game.h"
 #include "loadMap.h"
+#include "math.h"
 
 void init(game *game) 
 {
@@ -9,13 +10,17 @@ void init(game *game)
     game->renderer = SDL_CreateRenderer(game->window, -1, SDL_RENDERER_ACCELERATED);
     game->player.x = SCREEN_WIDTH / 2;
     game->player.y = SCREEN_HEIGHT / 2;
-   game->player.velocity = 10;
 
     loadMap("map", game);
 
     game->board.xStep = SCREEN_WIDTH / game->board.w; // A AMELIORER
     game->board.yStep = SCREEN_HEIGHT / game->board.h;
+
+    game->player.norm = 10;
     game->player.size = game->board.xStep / 5; 
+    game->player.angle = 0;
+    game->player.dx = game->player.norm * cos(game->player.angle);
+    game->player.dy = game->player.norm * sin(game->player.angle);
     
-    game->done = FALSE;
+    game->done = false;
 }

@@ -2,6 +2,10 @@
 #define LOGIC
 
 #include "game.h"
-int canMove(game *, int x, int y);
+
+void left(game *game);
+void right(game *game);
+void up(game *game);
+void down(game *game);
 
 #endif

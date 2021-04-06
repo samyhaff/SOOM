@@ -1,6 +1,31 @@
 #include "game.h"
 
-int canMove(game *game, int x, int y)
+void left(game *game) 
 {
-    return ((game->board.arr[(x + game->player.size / 2) / game->board.xStep][(y + game->player.size / 2) / game->board.yStep] == EMPTY) && (0 <= x) && (0 <= y) && (x < SCREEN_WIDTH - game->player.size) && (y < SCREEN_HEIGHT - game->player.size));
+    game->player.angle -= 0.05;
+    if (game->player.angle < 0)
+        game->player.angle += 2 * PI;
+    game->player.dx = game->player.norm * cos(game->player.angle);
+    game->player.dy = game->player.norm * sin(game->player.angle);
+}
+
+void right(game *game) 
+{
+    game->player.angle += 0.05;
+    if (game->player.angle > 2 * PI)
+        game->player.angle -= 2 * PI;
+    game->player.dx = game->player.norm * cos(game->player.angle);
+    game->player.dy = game->player.norm * sin(game->player.angle);
+}
+
+void up(game *game) 
+{
+    game->player.x += game->player.dx;
+    game->player.y += game->player.dy;
+}
+
+void down(game *game) 
+{
+    game->player.x -= game->player.dx;
+    game->player.y -= game->player.dy;
 }

@@ -14,7 +14,7 @@ SOOM.out: main.o draw.o input.o init.o quit.o loadMap.o logic.o
 draw.o: draw.cpp game.h
 	$(CC) $(FLAGS) -c draw.cpp
 
-input.o: input.cpp game.h
+input.o: input.cpp game.h logic.h
 	$(CC) $(FLAGS) -c input.cpp
 
 init.o: init.cpp game.h loadMap.h

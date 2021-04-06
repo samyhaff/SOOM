@@ -1,5 +1,6 @@
 #include "game.h"
 #include "logic.h"
+#include "math.h"
 
 void input(game *game) 
 {
@@ -8,38 +9,26 @@ void input(game *game)
         switch (game->e.type)
         {
             case SDL_QUIT:
-                game->done = TRUE;
+                game->done = true;
             break;
             case SDL_KEYDOWN:
             {
                 switch (game->e.key.keysym.sym)
                 {
                     case SDLK_ESCAPE:
-                        game->done = TRUE;
+                        game->done = true;
                     break;
                     case SDLK_UP:
-                    {
-                        if (canMove(game, game->player.x, game->player.y -1))
-                            game->player.y -= game->player.velocity;
-                    }
+                        up(game);
                     break;
                     case SDLK_DOWN:
-                    {
-                        if (canMove(game, game->player.x, game->player.y + 1)) 
-                            game->player.y += game->player.velocity;
-                    }
+                        down(game);
                     break;
                     case SDLK_RIGHT:
-                    {
-                        if (canMove(game, game->player.x + 1, game->player.y)) 
-                            game->player.x += game->player.velocity;
-                    }
+                        right(game);
                     break;
                     case SDLK_LEFT:
-                    {
-                        if (canMove(game, game->player.x - 1, game->player.y)) 
-                            game->player.x -= game->player.velocity;
-                    }
+                        left(game);
                     break;
                 }
             }
