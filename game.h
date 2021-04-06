@@ -6,18 +6,17 @@
 #define SCREEN_WIDTH  800
 #define SCREEN_HEIGHT 800
 
-#define BOARD_MAX_WIDTH   100
-#define BOARD_MAX_HEIGHT  100
+#define BOARD_MAX_DIM 100
 
 #define PI 3.14159
 
 #define EMPTY 0
 #define WALL  1
 
-typedef int board_array[BOARD_MAX_WIDTH][BOARD_MAX_HEIGHT];
+typedef int board_array[BOARD_MAX_DIM][BOARD_MAX_DIM];
 
 typedef struct {
-    int w, h, xStep, yStep;
+    int dim, step;
     board_array arr;
 } t_board;
 
@@ -27,12 +26,17 @@ typedef struct {
 } t_player;
 
 typedef struct {
+   float angle, x, y, x_offset, y_offset;
+} t_ray;
+
+typedef struct {
     SDL_Window *window;
     SDL_Renderer *renderer;
     SDL_Event e;
     bool done;
     t_board board;
     t_player player;
+    t_ray ray;
 } game;
 
 #endif

@@ -3,6 +3,7 @@
 #include "input.h"
 #include "draw.h"
 #include "quit.h"
+#include "logic.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,8 +13,9 @@ int main(int argc, char *argv[])
 
     while (!game.done)
     {
-        draw(&game);
         input(&game);
+        rayCasting(&game);
+        draw(&game);
     }
 
     quit(&game);

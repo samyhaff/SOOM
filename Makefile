@@ -11,6 +11,9 @@ clean:
 SOOM.out: main.o draw.o input.o init.o quit.o loadMap.o logic.o
 	$(CC) $(FLAGS) -o SOOM.out main.o draw.o init.o input.o quit.o loadMap.o logic.o
 
+main.o: main.cpp draw.h init.h input.h game.h quit.h logic.h
+	$(CC) $(FLAGS) -c main.cpp
+
 draw.o: draw.cpp game.h
 	$(CC) $(FLAGS) -c draw.cpp
 

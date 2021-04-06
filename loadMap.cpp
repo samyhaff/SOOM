@@ -9,14 +9,13 @@ void loadMap(string nameOfFile, game *game)
     fstream file;
     file.open(nameOfFile, ios::in);
 
-    file >> game->board.w;
-    file >> game->board.h;
+    file >> game->board.dim;
 
-    for (int i = 0; i < game->board.h; i++)
+    for (int i = 0; i < game->board.dim; i++)
     {
-        for (int j = 0; j < game->board.w; j++) 
+        for (int j = 0; j < game->board.dim; j++) 
         {
-            file >> game->board.arr[i][j % game->board.w];
+            file >> game->board.arr[i][j];
         }
     }
 
