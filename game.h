@@ -26,7 +26,7 @@ typedef struct {
 } t_player;
 
 typedef struct {
-   float angle, x, y, x_offset, y_offset;
+   float x, y;
 } t_ray;
 
 typedef struct {
