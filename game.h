@@ -13,6 +13,9 @@
 #define EMPTY 0
 #define WALL  1
 
+#define FIELD_OF_VIEW PI / 4
+#define NB_RAYS 100
+
 typedef int board_array[BOARD_MAX_DIM][BOARD_MAX_DIM];
 
 typedef struct {
@@ -29,6 +32,8 @@ typedef struct {
    float x, y;
 } t_ray;
 
+typedef t_ray t_rays[NB_RAYS];
+
 typedef struct {
     SDL_Window *window;
     SDL_Renderer *renderer;
@@ -36,7 +41,7 @@ typedef struct {
     bool done;
     t_board board;
     t_player player;
-    t_ray ray;
+    t_rays rays;
 } game;
 
 #endif

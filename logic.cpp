@@ -40,17 +40,22 @@ float distance(float ax, float ay, float bx, float by)
 
 void rayCasting(game *game) 
 {
-    float angle = game->player.angle;
-    int depth = 0;
+    float angle = game->player.angle - FIELD_OF_VIEW;
+    int depth;
     float x_horizontal, y_horizontal, x_vertical, y_vertical, x_offset, y_offset;
-    float inv_tan = -1 / tan(angle);
-    float neg_tan = -tan(angle);
+    float inv_tan, neg_tan;
     int max_depth = SCREEN_HEIGHT / game->board.step;
+    float angle_step = 2 * FIELD_OF_VIEW / NB_RAYS;
 
     // horizontal lines
 
-    for (int r = 0; r < 1; r++)
+    for (int i = 0; i < NB_RAYS; i++)
     {
+        angle += angle_step;
+        depth = 0;
+        inv_tan = -1 / tan(angle);
+        neg_tan = -tan(angle);
+
         // looking down
         if (angle > PI)
         {
@@ -132,13 +137,13 @@ void rayCasting(game *game)
 
         if (distance(game->player.x, game->player.y, x_horizontal, y_horizontal) < distance(game->player.x, game->player.y, x_vertical, y_vertical))
         {
-            game->ray.x = x_horizontal;
-            game->ray.y = y_horizontal;
+            game->rays[i].x = x_horizontal;
+            game->rays[i].y = y_horizontal;
         }
         else 
         {
-            game->ray.x = x_vertical;
-            game->ray.y = y_vertical;
+            game->rays[i].x = x_vertical;
+            game->rays[i].y = y_vertical;
         }
     }
 }
