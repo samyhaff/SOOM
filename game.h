@@ -3,8 +3,11 @@
 
 #include <SDL2/SDL.h>
 
-#define SCREEN_WIDTH  800
-#define SCREEN_HEIGHT 800
+#define FPS_WIDTH  800 
+#define FPS_HEIGHT 480
+
+#define MAP_WIDTH  480
+#define MAP_HEIGHT 480
 
 #define BOARD_MAX_DIM 100
 
@@ -13,8 +16,8 @@
 #define EMPTY 0
 #define WALL  1
 
-#define FIELD_OF_VIEW PI / 4
-#define NB_RAYS 100
+#define FIELD_OF_VIEW PI / 6
+#define NB_RAYS 80
 
 typedef int board_array[BOARD_MAX_DIM][BOARD_MAX_DIM];
 
@@ -32,6 +35,8 @@ typedef struct {
    float x, y;
 } t_ray;
 
+typedef float t_heights[NB_RAYS];
+
 typedef t_ray t_rays[NB_RAYS];
 
 typedef struct {
@@ -42,6 +47,7 @@ typedef struct {
     t_board board;
     t_player player;
     t_rays rays;
+    t_heights heights;
 } game;
 
 #endif

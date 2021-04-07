@@ -1,5 +1,4 @@
 #include "game.h"
-#include <iostream>
 
 using namespace std;
 
@@ -44,7 +43,7 @@ void rayCasting(game *game)
     int depth;
     float x_horizontal, y_horizontal, x_vertical, y_vertical, x_offset, y_offset;
     float inv_tan, neg_tan;
-    int max_depth = SCREEN_HEIGHT / game->board.step;
+    int max_depth = MAP_HEIGHT / game->board.step;
     float angle_step = 2 * FIELD_OF_VIEW / NB_RAYS;
 
     // horizontal lines
@@ -81,7 +80,7 @@ void rayCasting(game *game)
         }
         while (depth < max_depth)
         {
-            if ((0 <= y_horizontal) && (0 <= x_horizontal) && (x_horizontal < SCREEN_WIDTH) && (y_horizontal < SCREEN_HEIGHT) 
+            if ((0 <= y_horizontal) && (0 <= x_horizontal) && (x_horizontal < MAP_WIDTH) && (y_horizontal < MAP_HEIGHT) 
                 && (game->board.arr[(int) y_horizontal / game->board.step][(int) x_horizontal / game->board.step] == WALL))
             {
                 depth = max_depth;
@@ -122,7 +121,7 @@ void rayCasting(game *game)
         }
         while (depth < max_depth)
         {
-            if ((0 <= y_vertical) && (0 <= x_vertical) && (x_vertical < SCREEN_WIDTH) && (y_vertical < SCREEN_HEIGHT) 
+            if ((0 <= y_vertical) && (0 <= x_vertical) && (x_vertical < MAP_WIDTH) && (y_vertical < MAP_HEIGHT) 
                 && (game->board.arr[(int) y_vertical / game->board.step][(int) x_vertical / game->board.step] == WALL))
             {
                 depth = max_depth;
@@ -135,15 +134,25 @@ void rayCasting(game *game)
             }
         }
 
+        float correction_angle = game->player.angle - angle;
+        if (correction_angle < 0)
+            correction_angle += 2 * PI;
+        if (correction_angle > 2 * PI)
+            correction_angle -= 2 * PI;
+
         if (distance(game->player.x, game->player.y, x_horizontal, y_horizontal) < distance(game->player.x, game->player.y, x_vertical, y_vertical))
         {
             game->rays[i].x = x_horizontal;
             game->rays[i].y = y_horizontal;
+            game->heights[i] = (game->board.step * FPS_HEIGHT) / (cos(correction_angle) * distance(game->player.x, game->player.y, x_horizontal, y_horizontal));
         }
         else 
         {
             game->rays[i].x = x_vertical;
             game->rays[i].y = y_vertical;
+            game->heights[i] = (game->board.step * FPS_HEIGHT) / (cos(correction_angle) * distance(game->player.x, game->player.y, x_vertical, y_vertical));
         }
+        if (game->heights[i] > FPS_HEIGHT)
+            game->heights[i] = FPS_HEIGHT;
     }
 }
