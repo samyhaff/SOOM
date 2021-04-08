@@ -19,9 +19,11 @@ void input(game *game)
                         game->done = true;
                     break;
                     case SDLK_UP:
-                        up(game);
+                        if (canMoveUp(game))
+                            up(game);
                     break;
                     case SDLK_DOWN:
+                        if (canMoveDown(game))
                         down(game);
                     break;
                     case SDLK_RIGHT:

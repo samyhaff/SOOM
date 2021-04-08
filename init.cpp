@@ -15,7 +15,7 @@ void init(game *game)
 
     game->player.x = MAP_WIDTH / 2;
     game->player.y = MAP_HEIGHT / 2;
-    game->player.norm = 10;
+    game->player.norm = 5;
     game->player.size = game->board.step / 5; 
     game->player.angle = 0;
     game->player.dx = game->player.norm * cos(game->player.angle);

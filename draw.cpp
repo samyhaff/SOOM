@@ -35,7 +35,7 @@ void draw(game *game)
     SDL_SetRenderDrawColor(game->renderer, 255, 255, 0, 255);
     int x = (int) game->player.x + (game->player.size / 2);
     int y = (int) game->player.y + (game->player.size / 2);
-    SDL_RenderDrawLine(game->renderer, x, y, x + game->player.norm * game->player.dx, y + game->player.norm * game->player.dy);
+    /* SDL_RenderDrawLine(game->renderer, x, y, x + game->player.norm * game->player.dx, y + game->player.norm * game->player.dy); */
     SDL_SetRenderDrawColor(game->renderer, 255, 0, 0, 255);
     for (int i = 0; i < NB_RAYS; i++)
         SDL_RenderDrawLine(game->renderer, x, y, game->rays[i].x, game->rays[i].y);

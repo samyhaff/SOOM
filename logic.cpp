@@ -32,6 +32,20 @@ void down(game *game)
     game->player.y -= game->player.dy;
 }
 
+bool canMoveUp(game *game)
+{
+    int x = (int) game->player.x + (game->player.size / 2);
+    int y = (int) game->player.y + (game->player.size / 2);                                                                                                                        
+    return (game->board.arr[(int) (y + game->player.norm * game->player.dy) / game->board.step][(int) (x + game->player.norm * game->player.dx) / game->board.step] == EMPTY);
+}
+
+bool canMoveDown(game *game)
+{
+    int x = (int) game->player.x + (game->player.size / 2);
+    int y = (int) game->player.y + (game->player.size / 2);                                                                                                                        
+    return (game->board.arr[(int) (y - game->player.norm * game->player.dy) / game->board.step][(int) (x - game->player.norm * game->player.dx) / game->board.step] == EMPTY);
+}
+
 float distance(float ax, float ay, float bx, float by)
 {
     return sqrt((bx -ax) * (bx - ax) + (by - ay) * (by - ay));
