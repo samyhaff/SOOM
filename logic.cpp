@@ -145,12 +145,14 @@ void rayCasting(game *game)
             game->rays[i].x = x_horizontal;
             game->rays[i].y = y_horizontal;
             game->heights[i] = (game->board.step * FPS_HEIGHT) / (cos(correction_angle) * distance(game->player.x, game->player.y, x_horizontal, y_horizontal));
+            game->lights[i] = true;
         }
         else 
         {
             game->rays[i].x = x_vertical;
             game->rays[i].y = y_vertical;
             game->heights[i] = (game->board.step * FPS_HEIGHT) / (cos(correction_angle) * distance(game->player.x, game->player.y, x_vertical, y_vertical));
+            game->lights[i] = false;
         }
         if (game->heights[i] > FPS_HEIGHT)
             game->heights[i] = FPS_HEIGHT;

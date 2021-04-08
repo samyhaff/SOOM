@@ -6,7 +6,7 @@ using namespace std;
 void draw(game *game)
 {
     // clear the screen
-    SDL_SetRenderDrawColor(game->renderer, 128, 128, 128, 255);
+    SDL_SetRenderDrawColor(game->renderer, 72, 72, 72, 255);
     SDL_RenderClear(game->renderer);
 
     SDL_Rect mapViewport = {FPS_WIDTH, 0, MAP_WIDTH, MAP_HEIGHT};
@@ -45,6 +45,10 @@ void draw(game *game)
 
     for (int i = 0; i < NB_RAYS; i++)
     {
+        if (game->lights[i])
+            SDL_SetRenderDrawColor(game->renderer, 255, 0, 0, 255);
+        else 
+            SDL_SetRenderDrawColor(game->renderer, 122, 0, 0, 255);
         int offset = (FPS_HEIGHT / 2) - game->heights[i];
         SDL_Rect wall = {i * FPS_WIDTH / NB_RAYS, offset, FPS_WIDTH / NB_RAYS, (int) game->heights[i]};
         SDL_RenderFillRect(game->renderer, &wall);

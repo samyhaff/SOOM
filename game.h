@@ -39,6 +39,8 @@ typedef float t_heights[NB_RAYS];
 
 typedef t_ray t_rays[NB_RAYS];
 
+typedef bool t_lights[NB_RAYS];
+
 typedef struct {
     SDL_Window *window;
     SDL_Renderer *renderer;
@@ -48,6 +50,7 @@ typedef struct {
     t_player player;
     t_rays rays;
     t_heights heights;
+    t_lights lights;
 } game;
 
 #endif
