@@ -19,7 +19,7 @@ void draw(game *game)
         {
             if (game->board.arr[i][j] == WALL)
                 SDL_SetRenderDrawColor(game->renderer, 255, 255, 255, 255);
-            else 
+            else
                 SDL_SetRenderDrawColor(game->renderer, 0, 0, 0, 255);
             SDL_Rect cell_rect = {j * game->board.step, i * game->board.step, game->board.step - 2, game->board.step - 2};
             SDL_RenderFillRect(game->renderer, &cell_rect);
@@ -47,7 +47,7 @@ void draw(game *game)
     {
         if (game->lights[i])
             SDL_SetRenderDrawColor(game->renderer, 255, 0, 0, 255);
-        else 
+        else
             SDL_SetRenderDrawColor(game->renderer, 122, 0, 0, 255);
         int offset = (FPS_HEIGHT / 2) - game->heights[i];
         SDL_Rect wall = {i * FPS_WIDTH / NB_RAYS, offset, FPS_WIDTH / NB_RAYS, (int) game->heights[i]};
